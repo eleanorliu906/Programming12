@@ -106,7 +106,7 @@ void draw() {
   circle(0.18*width, 0.13*height, 0.12*height); //  circle to create a crescent
 
   // adding new stars
-  if (frameCount % 10 == 0 && frameCount > 0) addStar();
+  if (frameCount % 8 == 0 && frameCount > 60) addStar();
 
   // running the ArrayList of stars
   createStars();
@@ -126,15 +126,15 @@ void createStars() {
 }
 
 void addStar() {
-  starList.add(new Stars(mouseX + random(-5, 5), mouseY  + random(-5, 5), random(8, 12)));
+  starList.add(new Stars(mouseX + random(-5, 5), mouseY  + random(-5, 5), random(5, 8)));
 }
 
 float moonTransparency() {
-  if (frameCount/5 % 256 == 0) fullMoon = !fullMoon;
+  if (frameCount % 256 == 0) fullMoon = !fullMoon;
 
   if (!fullMoon) {
-    return (frameCount/5) % 256;
+    return (frameCount) % 256;
   } else {
-    return 256 - (frameCount/5) % 256;
+    return 256 - (frameCount) % 256;
   }
 }
