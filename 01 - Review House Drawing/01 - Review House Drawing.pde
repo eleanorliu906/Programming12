@@ -55,17 +55,24 @@ void draw() {
 
   // windows 2, 3, 4, 5
   noStroke();
-  square(0.3*width, 0.62*height, 0.14*height);
-  square(0.3*width, 0.42*height, 0.14*height);
+  fill(#91e5eb);
   square(0.56*width, 0.62*height, 0.14*height);
   square(0.56*width, 0.42*height, 0.14*height);
 
+  // window 2 (bottom left)
+  fill(#91e5eb);
+  square(0.3*width, 0.62*height, 0.14*height);
+  
   // window 2's bars
   strokeWeight(5);
   stroke(255);
   line(0.37*width, 0.62*height, 0.37*width, 0.76*height);
   line(0.3*width, 0.69*height, 0.44*width, 0.69*height);
 
+  // window 3: top left
+  fill(#91e5eb);
+  square(0.3*width, 0.42*height, 0.14*height);
+  
   // window 3's bars
   line(0.37*width, 0.42*height, 0.37*width, 0.56*height);
   line(0.3*width, 0.49*height, 0.44*width, 0.49*height);
@@ -79,18 +86,20 @@ void draw() {
   line(0.56*width, 0.69*height, 0.7*width, 0.69*height);
 
   // moon
-  fill(#fdffcc, moonTransparency());
+  fill(#fdffcc, moonTransparency()); // function to change moon's transparency 
   noStroke();
-  circle(0.15*width, 0.15*height, 0.15*height);
+  circle(0.15*width, 0.15*height, 0.15*height); // moon
   fill(#261566);
-  circle(0.18*width, 0.13*height, 0.12*height);
+  circle(0.18*width, 0.13*height, 0.12*height); //  circle to create a crescent 
 
-  if (frameCount % 10 == 0 && frameCount > 0) addStar();
+  // adding new stars
+  if (frameCount % 10 == 0 && frameCount > 0) addStar(); 
 
-  gameEngine();
+  // running the ArrayList of stars
+  createStars();
 }
 
-void gameEngine() {
+void createStars() {
   for (int i = 0; i < starList.size(); i++) {
     Stars s = starList.get(i);
     s.act();
