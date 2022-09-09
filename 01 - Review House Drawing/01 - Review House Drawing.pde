@@ -53,16 +53,11 @@ void draw() {
   line(0.5*width, 0.24*height, 0.5*width, 0.40*height);
   line(0.42*width, 0.32*height, 0.58*width, 0.32*height);
 
-  // windows 2, 3, 4, 5
-  noStroke();
-  fill(#91e5eb);
-  square(0.56*width, 0.62*height, 0.14*height);
-  square(0.56*width, 0.42*height, 0.14*height);
-
   // window 2 (bottom left)
   fill(#91e5eb);
+  noStroke();
   square(0.3*width, 0.62*height, 0.14*height);
-  
+
   // window 2's bars
   strokeWeight(5);
   stroke(255);
@@ -71,29 +66,47 @@ void draw() {
 
   // window 3: top left
   fill(#91e5eb);
+  noStroke();
   square(0.3*width, 0.42*height, 0.14*height);
-  
+
   // window 3's bars
+  strokeWeight(5);
+  stroke(255);
   line(0.37*width, 0.42*height, 0.37*width, 0.56*height);
   line(0.3*width, 0.49*height, 0.44*width, 0.49*height);
 
+
+  // window 4: bottom right
+  fill(#91e5eb);
+  noStroke();
+  square(0.56*width, 0.42*height, 0.14*height);
+
   // window 4's bars
+  strokeWeight(5);
+  stroke(255);
   line(0.63*width, 0.42*height, 0.63*width, 0.56*height);
   line(0.56*width, 0.49*height, 0.7*width, 0.49*height);
+  
+  // window 5: top right
+  fill(#91e5eb);
+  noStroke();
+   square(0.56*width, 0.62*height, 0.14*height);
 
   // window 5's bars
+  strokeWeight(5);
+  stroke(255);
   line(0.63*width, 0.62*height, 0.63*width, 0.76*height);
   line(0.56*width, 0.69*height, 0.7*width, 0.69*height);
 
   // moon
-  fill(#fdffcc, moonTransparency()); // function to change moon's transparency 
+  fill(#fdffcc, moonTransparency()); // function to change moon's transparency
   noStroke();
   circle(0.15*width, 0.15*height, 0.15*height); // moon
   fill(#261566);
-  circle(0.18*width, 0.13*height, 0.12*height); //  circle to create a crescent 
+  circle(0.18*width, 0.13*height, 0.12*height); //  circle to create a crescent
 
   // adding new stars
-  if (frameCount % 10 == 0 && frameCount > 0) addStar(); 
+  if (frameCount % 10 == 0 && frameCount > 0) addStar();
 
   // running the ArrayList of stars
   createStars();
@@ -118,7 +131,7 @@ void addStar() {
 
 float moonTransparency() {
   if (frameCount/5 % 256 == 0) fullMoon = !fullMoon;
-  
+
   if (!fullMoon) {
     return (frameCount/5) % 256;
   } else {
