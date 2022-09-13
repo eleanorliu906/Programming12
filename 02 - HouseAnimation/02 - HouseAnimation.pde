@@ -43,7 +43,7 @@ void setup() {
 
   // initializing animation variables
   sunMoonX = 90;
-  
+
   cloud = loadImage("cloud.png");
 }
 
@@ -106,21 +106,21 @@ void drawMoon() {
   // moon
   fill(#fdffcc, moonTransparency()); // function to change moon's transparency
   noStroke();
-  circle(sunMoonX, 0.15*width, 0.15*height); // moon
+  circle(sunMoonX, 0.15*width - 30*sin(PI*sunMoonX/600), 0.15*height); // moon
   fill(nightblue);
-  circle(sunMoonX + 18, 0.13*width, 0.12*height); //  circle to create a crescent
+  circle(sunMoonX + 18, 0.13*width - 30*sin(PI*sunMoonX/600), 0.12*height); //  circle to create a crescent
 }
 
 void drawSun() {
   // Sun
   fill(sunOrange); // function to change moon's transparency
   noStroke();
-  circle(sunMoonX, 0.15*width, 0.15*height); // moon
+  circle(sunMoonX, 0.15*width - 30*sin(PI*sunMoonX/600), 0.15*height); // moon
 }
 
 void dayOrNight() {
   sunMoonX = (sunMoonX + 0.5);
-  
+
   if (sunMoonX > width) {
     sunMoonX = -0.075 * width;
     isNight = !isNight;
