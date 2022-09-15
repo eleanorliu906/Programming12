@@ -14,6 +14,7 @@ Minim minim;
 AudioPlayer song;
 
 ArrayList<CloudStars> objList = new ArrayList<CloudStars>();
+ArrayList<Gif> gifList = new ArrayList<Gif>();
 
 PImage cloud;
 
@@ -41,7 +42,23 @@ color lightpink = #fabbf7;
 color cream = #f5f3bc;
 color lightorange = #faddbb;
 
+// GIF
+
+PImage[] gif;
+int numberOfFrames;
+int gifCooldown;
+
 void setup() {
+
+  // GIF
+  numberOfFrames = 91;
+  gif = new PImage[numberOfFrames];
+  gifCooldown= 0;
+
+  for (int i = 0; i < 91; i++) {
+    if (i < 10) gif[i] = loadImage("frame_0" + i + "_delay-0.03s.png");
+    else gif[i] = loadImage("frame_" + i + "_delay-0.03s.png");
+  }
 
   size(600, 600);
 
@@ -101,6 +118,11 @@ void draw() {
   createButton(width*0.04, height*0.85, 25, lightpink);
   createButton(width*0.04, height*0.9, 25, lightorange);
   createButton(width*0.04, height*0.95, 25, cream);
+
+  createRectButton(width*0.04, height*0.05, 25, 25, lavender);
+
+  gifCooldown --;
+  print(gifCooldown);
 }
 
 void createObjs() {
@@ -111,6 +133,17 @@ void createObjs() {
 
     if (!s.alive) {
       objList.remove(i);
+      i--;
+    }
+  }
+
+  for (int i = 0; i < gifList.size(); i++) {
+    Gif g = gifList.get(i);
+    g.act();
+    g.show();
+
+    if (!g.alive) {
+      gifList.remove(i);
       i--;
     }
   }
@@ -131,6 +164,29 @@ void createButton(float x, float y, float s, color c) {
   if (mousePressed && touchingCircle(x, y, s/2)) {
     houseColor = c;
   }
+}
+
+void createRectButton(float x, float y, float w, float h, color c) {
+  noStroke();
+  fill(c);
+  rect(x, y, w, h);
+
+  if (touchingRect(x, y, w, h)) {
+    strokeWeight(3);
+    stroke(red);
+    noFill();
+    rect(x, y, w, h);
+  } else noStroke();
+
+  if (mousePressed && touchingRect(x, y, w, h)) {
+    if (gifCooldown < 0) gifList.add(new Gif(random(width), random(0.6*height)));
+    gifCooldown = 120;
+  }
+}
+
+boolean touchingRect(float x, float y, float w, float h) {
+  if (mouseX >= x - 0.5*w && mouseX <= x + 0.5*w && mouseY >= y - 0.5*h && mouseY <= y + 0.5*h) return true;
+  else return false;
 }
 
 boolean touchingCircle(float x, float y, float r) {
