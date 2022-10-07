@@ -2,6 +2,10 @@
 // Programming 12, Block 1-2
 // Oct 7th, 2022
 
+// KEYBOARD:
+// press "T" to answer true
+// press "F" to answer false
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
