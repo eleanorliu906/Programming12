@@ -5,6 +5,15 @@ void game() {
   createButtons();
   countdown();
   createColorWords();
+  tactileGame();
+}
+
+void tactileGame(){
+  if (dist(mouseX, mouseY, 200, 300) < 100){
+    if (answer()) fill(trueGreenText, 120);
+    else if (!answer()) fill(falsePinkText, 120);
+    circle(mouseX, mouseY, 50);
+  }
 }
 
 void gameText() {
@@ -44,6 +53,7 @@ void checkAnswers(boolean playerAns) {
     score++;
   } else {
     mode = GAMEOVER;
+    failure.rewind();
     failure.play();
     roundCount ++;
     numOfRounds.add(roundCount);
