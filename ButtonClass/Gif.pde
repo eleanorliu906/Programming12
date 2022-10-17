@@ -2,12 +2,12 @@
 
 class Gif {
   float x, y, w, h;
-  String text1, text2, folder;
+  String text1, text2;
   int count, num, rate;
   PImage gif[];
   boolean alive, repeat;
 
-  Gif(float _x, float _y, float _w, float _h, String t1, String t2, int n, String f, int r, boolean rpt) {
+  Gif(float _x, float _y, float _w, float _h, String t1, String t2, int n, int r, boolean rpt) {
     x = _x;
     y = _y;
     w = _w;
@@ -15,7 +15,6 @@ class Gif {
     text1 = t1;
     text2 = t2;
     num = n;
-    folder = f;
     alive = true;
     count = 0;
     rate = r;
@@ -25,15 +24,14 @@ class Gif {
     loadImages();
   }
 
-  Gif( String t1, String t2, int n, String f, int r) {
+  Gif(float _w, float _h,String t1, String t2, int n, int r) {
     x = width/2;
-    y = 250;
-    w = 465;
-    h = 340;
+    y = 225;
+    w = _w;
+    h = _h;
     text1 = t1;
     text2 = t2;
     num = n;
-    folder = f;
     alive = true;
     count = 0;
     rate = r;
@@ -41,7 +39,23 @@ class Gif {
     gif = new PImage[n];
     loadImages();
   }
-  
+
+  Gif(String t1, String t2, int n, int r) {
+    x = width/2;
+    y = 225;
+    w = 465;
+    h = 300;
+    text1 = t1;
+    text2 = t2;
+    num = n;
+    alive = true;
+    count = 0;
+    rate = r;
+    repeat = true;
+    gif = new PImage[n];
+    loadImages();
+  }
+
 
   void act() {
     if (alive && frameCount % rate == 0) count ++;
@@ -59,8 +73,8 @@ class Gif {
   void loadImages() {
     for (int i = 0; i < n; i++) {
       // println(i, "data/" + folder + "/" + text1 + "0" + i + text2 + ".png", gif);
-      if (i < 10) gif[i] = loadImage("data/" + folder + "/" + text1 + "0" + i + text2 + ".png");
-      else gif[i] = loadImage("data/" + folder + "/" + text1 + i + text2 + ".png");
+      if (i < 10) gif[i] = loadImage("data/" + text1 + "0" + i + text2 + ".png");
+      else gif[i] = loadImage("data/" + text1 + i + text2 + ".png");
     }
   }
 }
