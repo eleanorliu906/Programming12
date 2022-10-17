@@ -64,11 +64,11 @@ void initializeButtons() {
 }
 
 void  initializeGifs() {
-  myGifs.add(new Gif("frame_", "_delay-0.1s", 34, "orange", 10));
-  myGifs.add(new Gif("frame_", "_delay-0.07s", 24, "yellow", 7));
-  myGifs.add(new Gif("frame_", "_delay-0.05s", 21, "green", 5));
-  myGifs.add(new Gif("frame_", "_delay-0.1s", 14, "aqua", 10));
-  myGifs.add(new Gif("frame_", "_delay-0.06s", 26, "blue", 6));
+  myGifs.add(new Gif("orange/frame_", "_delay-0.1s", 34, 10));
+  myGifs.add(new Gif("yellow/frame_", "_delay-0.07s", 24, 7));
+  myGifs.add(new Gif("green/frame_", "_delay-0.05s", 21,  5));
+  myGifs.add(new Gif(250, 300, "aqua/frame_", "_delay-0.1s", 14, 10));
+  myGifs.add(new Gif(250, 300, "blue/frame_", "_delay-0.06s", 26,  6));
 }
 
 void runButtons() {
