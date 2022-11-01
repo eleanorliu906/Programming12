@@ -1,0 +1,3 @@
+void build() {
+  background(lavender);
+}
