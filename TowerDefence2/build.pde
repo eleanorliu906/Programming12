@@ -1,0 +1,71 @@
+void build() {
+  showMap();
+  buildLayout();
+  buildClicks();
+  buildAnimateThings();
+}
+
+void buildLayout() {
+  fill(purple);
+  textSize(50);
+  text("Build Mode", width/2, 30);
+  sidebar();
+  playButton.show();
+  playButton.act();
+
+  addTower.show();
+  addTower.act();
+
+  if (buildingTowers) buildPannel();
+}
+
+void buildClicks() {
+  if (playButton.clicked) {
+    mode = PLAY;
+  }
+
+  if (addTower.clicked) buildingTowers = true;
+}
+
+void buildAnimateThings() {
+  runTowers();
+  runTexts();
+}
+
+void runTexts() {
+  for (int i = 0; i < texts.size(); i++) {
+    texts.get(i).act();
+    texts.get(i).show();
+
+    if (texts.get(i).counter <= 0) texts.remove(i);
+  }
+}
+
+void buildPannel() {
+  noStroke();
+  fill(lightblue);
+  rect(0.9*width, 0.47*height, 100, 200);
+
+  gunTowerButton.show();
+  gunTowerButton.act();
+  AoETowerButton.show();
+  AoETowerButton.act();
+  sniperTowerButton.show();
+  sniperTowerButton.act();
+  sniperTower2Button.show();
+  sniperTower2Button.act();
+
+  if (gunTowerButton.clicked) {
+    if (money >= 10) towers.add(new TowerGun(mouseX, mouseY));
+    else if (money <= 10) texts.add(new Text(width/2, height/2, "Insufficient money"));
+  } else if (AoETowerButton.clicked) {
+    if (money >= 10) towers.add(new TowerAOE(mouseX, mouseY));
+    else if (money <= 10) texts.add(new Text(width/2, height/2, "Insufficient money"));
+  } else if (sniperTowerButton.clicked) {
+    if (money >= 10) towers.add(new TowerSniper(mouseX, mouseY));
+    else if (money <= 10) texts.add(new Text(width/2, height/2, "Insufficient money"));
+  } else if (sniperTower2Button.clicked) {
+    if (money >= 10) towers.add(new TowerSniper2(mouseX, mouseY));
+    else if (money <= 10) texts.add(new Text(width/2, height/2, "Insufficient money"));
+  }
+}
