@@ -6,3 +6,7 @@ Block 1-2 <br />
 # Helpful Links
 Download entire folders from Github in one go: https://downgit.github.io/#/home <br />
 Convert YouTube links into MP3 for background music: https://ytop1.com/en283?link=https%3a%2f%2fwww.youtube.com%2fwatch%3fv%3dBNGBDIH-Rfg
+
+# Notes
+Unit 1: Review https://docs.google.com/document/d/1UndYtzGYRqgWlhVAEBYEkdljhW9qP2FK3GrT9jERkOs/edit <br/>
+Unit 2: Object Oriented Programming https://docs.google.com/document/d/1xKvKwlLtpCMTT4VKAWnIiAAQ2NIuOpxe-H3e6l_qFlg/edit
