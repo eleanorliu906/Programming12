@@ -21,7 +21,7 @@ void buildLayout() {
 }
 
 void buildClicks() {
-  if (playButton.clicked) {
+  if (playButton.clicked && !building) {
     mode = PLAY;
     counter = 210;
   }
