@@ -1,0 +1,126 @@
+import fisica.*;
+
+//Color pallete
+color blue   = color(29, 178, 242);
+color brown  = color(166, 120, 24);
+color green  = color(74, 163, 57);
+color red    = color(224, 80, 61);
+color yellow = color(242, 215, 16);
+color lilac = #c891ff;
+color lavender = #ddbaff;
+
+// Images
+PImage redBird, yellowBird, cloud;
+
+// Counters
+int cx1, cy1, cx2, cy2;
+
+// Booleans
+Button g, a;
+boolean gravity, add;
+boolean mouseReleased, wasPressed;
+
+// Fisica
+FWorld world;
+
+void setup() {
+
+  //make window
+  size(800, 600);
+
+  //load resources
+  redBird = loadImage("red-bird.png");
+  cloud = loadImage("cloud.png");
+  yellowBird = loadImage("parrot.png");
+  yellowBird.resize(50, 50);
+  //img.resize(w, h);
+
+  //initialize world
+  makeWorld();
+  rectMode(CENTER);
+  textAlign(CENTER, CENTER);
+  // imageMode(CENTER);
+
+  //add terrain to world
+  makeTopPlatform();
+  makeBottomPlatform();
+
+  // cloud coordinates
+  cx1 = 100;
+  cy1 = 25;
+
+  cx2 = -25;
+  cy2 = 25;
+
+  // buttons
+  g = new Button("Gravity", 80, 50, 150, 50);//Button(String t, int _x, int _y, int _w, int _h)
+  a = new Button("Add", 80, 125, 150, 50);
+
+  // booleans
+  gravity = true;
+  add = true;
+  mouseReleased = false;
+  wasPressed = false;
+}
+
+//=====================================================================================================================================
+
+void draw() {
+
+  //println("x: " + mouseX + " y: " + mouseY);
+  background(blue);
+
+  addObjects();
+  runCloud1();
+  runWorld();
+  runCloud2();
+  runButtons();
+}
+
+void runWorld() {
+  world.step();  //get box2D to calculate all the forces and new positions
+  world.draw();  //ask box2D to convert this world to processing screen coordinates and draw
+}
+
+void addObjects() {
+  if (frameCount % 20 == 0 && add) {  //Every 20 frames ...
+    makeCircle();
+    makeBlob();
+    makeBox();
+    makeBird();
+  }
+}
+
+void runCloud1() {
+  image(cloud, cx1, cy1);
+  cx1 ++;
+  if (cx1 > width) cx1 = 0;
+}
+
+void runCloud2() {
+  image(cloud, cx2, cy2);
+  cx2 ++;
+  if (cx2 > width) cx2 = 0;
+}
+
+void runButtons() {
+  g.show();
+  g.act();
+  a.show();
+  a.act();
+
+  if (g.clicked) {
+    println(g);
+    gravity = !gravity;
+    if (gravity == false) {
+      world.setGravity(0, 0);
+    } else if (gravity == true)   world.setGravity(0, 900);
+  }
+
+  if (a.clicked) {
+    add = !add;
+    println(a);
+  }
+
+  click();
+}
